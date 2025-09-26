@@ -1,0 +1,48 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv('mtcars.csv')
+
+plt.figure(figsize=(8, 5))
+n, bins, patches = plt.hist(df['mpg'], bins=10, color='skyblue', edgecolor='black')
+plt.title('Histogram of mpg')
+plt.xlabel('Miles per Gallon')
+plt.ylabel('Frequency')
+
+max_freq_index = n.argmax()
+print(f"Interval with highest frequency: {bins[max_freq_index]} to {bins[max_freq_index+1]}")
+plt.show()
+
+plt.figure(figsize=(8, 5))
+sns.scatterplot(data=df, x='wt', y='mpg', color='green')
+plt.title('Scatter Plot of Weight vs MPG')
+plt.xlabel('Weight (1000 lbs)')
+plt.ylabel('Miles per Gallon')
+plt.grid(True)
+plt.show()
+
+plt.figure(figsize=(6, 4))
+sns.countplot(data=df, x='am')
+plt.xticks([0, 1], ['Automatic', 'Manual'])
+plt.title('Transmission Type Count')
+plt.xlabel('Transmission Type')
+plt.ylabel('Count')
+plt.show()
+
+plt.figure(figsize=(6, 4))
+sns.boxplot(data=df, y='mpg', color='orange')
+plt.title('Box Plot of MPG')
+plt.ylabel('Miles per Gallon')
+plt.grid(True)
+plt.show()
+
+summary = df['mpg'].describe()
+print("Five Number Summary for mpg:")
+print(f"Min: {summary['min']}")
+print(f"Q1: {df['mpg'].quantile(0.25)}")
+print(f"Median: {summary['50%']}")
+print(f"Q3: {df['mpg'].quantile(0.75)}")
+print(f"Max: {summary['max']}")
+
+print("Push the code to GitHub using git commands or GitHub Desktop.")
